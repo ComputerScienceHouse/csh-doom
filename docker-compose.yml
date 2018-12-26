@@ -4,6 +4,7 @@ services:
         image: eisnerd/docker-zandronum-server
         ports:
             - '10667:10666/udp'
+        restart: always
         volumes:
             - ./config:/config
             - $PWAD_DIRECTORY:/data
@@ -13,6 +14,7 @@ services:
         image: eisnerd/docker-zandronum-server
         ports:
             - '10666:10666/udp'
+        restart: always
         volumes:
             - ./config:/config
             - $PWAD_DIRECTORY:/data
@@ -21,6 +23,7 @@ services:
         image: sebp/lighttpd
         ports:
             - '80:80'
+        restart: always
         volumes:
             - ./lighttpd:/etc/lighttpd
             - $PWAD_DIRECTORY:/var/www/localhost/htdocs
