@@ -3,17 +3,17 @@ services:
         entrypoint: /bin/zandronum-server +exec /config/common.cfg +exec /config/cooperative.cfg -file /data/AV.WAD -iwad /iwads/DOOM2.WAD +sv_password $PASSWORD +sv_rconpassword $RCON_PASSWORD
         image: eisnerd/docker-zandronum-server
         ports:
-            - '10667:10666/udp'
+            - '10666:10666/udp'
         restart: always
         volumes:
             - ./config:/config
             - $PWAD_DIRECTORY:/data
             - $IWAD_DIRECTORY:/iwads
     deathmatch:
-        entrypoint: /bin/zandronum-server +exec /config/common.cfg +exec /config/deathmatch.cfg -file /data/duelpack.wad -iwad /iwads/DOOM2.WAD +sv_password $PASSWORD +sv_rconpassword $RCON_PASSWORD
+        entrypoint: /bin/zandronum-server +exec /config/common.cfg +exec /config/deathmatch.cfg -file /data/duelpack.wad -iwad /iwads/DOOM2.WAD -port 10667 +sv_password $PASSWORD +sv_rconpassword $RCON_PASSWORD
         image: eisnerd/docker-zandronum-server
         ports:
-            - '10666:10666/udp'
+            - '10667:10667/udp'
         restart: always
         volumes:
             - ./config:/config
