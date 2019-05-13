@@ -1,8 +1,9 @@
 services:
     cooperative:
-        entrypoint: /config/zandronum.sh cooperative.cfg AV.WAD
+        entrypoint: /config/zandronum.sh cooperative.cfg AV.WAD 10666
         env_file: passwords.env
         image: eisnerd/docker-zandronum-server
+        network_mode: host
         ports:
             - '10666:10666/udp'
         restart: always
@@ -11,22 +12,24 @@ services:
             - $PWAD_DIRECTORY:/data
             - $IWAD_DIRECTORY:/iwads
     deathmatch:
-        entrypoint: /config/zandronum.sh deathmatch.cfg duelpack.wad
+        entrypoint: /config/zandronum.sh deathmatch.cfg duelpack.wad 10667
         env_file: passwords.env
         image: eisnerd/docker-zandronum-server
+        network_mode: host
         ports:
-            - '10667:10666/udp'
+            - '10667:10667/udp'
         restart: always
         volumes:
             - ./config:/config
             - $PWAD_DIRECTORY:/data
             - $IWAD_DIRECTORY:/iwads
     duel:
-        entrypoint: /config/zandronum.sh duel.cfg duelpack.wad
+        entrypoint: /config/zandronum.sh duel.cfg duelpack.wad 10668
         env_file: passwords.env
         image: eisnerd/docker-zandronum-server
+        network_mode: host
         ports:
-            - '10668:10666/udp'
+            - '10668:10668/udp'
         restart: always
         volumes:
             - ./config:/config
@@ -34,6 +37,7 @@ services:
             - $IWAD_DIRECTORY:/iwads
     web:
         image: sebp/lighttpd
+        network_mode: host
         ports:
             - '80:80'
         restart: always
