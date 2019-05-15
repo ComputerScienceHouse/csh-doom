@@ -1,22 +1,21 @@
-# Zandronum
+# CSH Doom
+This is a Docker Compose setup for running several Doom servers (using the Zandronum source port) and a directory listing that hosts the mods used by them. As such, Docker is needed in order to run this.
 
-Zandronum s a collection of run scripts that create servers for multiplayer DOOM 2. A live example can be found [Here](http://zandronum.csh.rit.edu)
+## Ports
+* 80/tcp
+* 10666/udp
+* 10667/udp
+* 10668/udp
 
-## Setup
-### Requires Docker
+## Environment Variables
 
-### Required Environment Variables:
-* `PASSWORD` - Password for joining the server
-* `RCON_PASSWORD` - Password for joining the server as root
-* `PWAD_DIRECTORY` - Directory for `PWAD`s or game files like `DOOM.WAD`
-* `IWAD_DIRECTORY` - Directory for `IWAD`s or mod and modpack files
+### passwords.env (Required)
+* `PASSWORD` - Password for joining the server.
+* `RCON_PASSWORD` - Password for joining the server as an admin.
 
-### Required Ports
-* `80`
-* `10666 [UDP]`
-* `10667 [UDP]`
-* `10668 [UDP]`
+### .env (Optional)
+* `IWAD_DIRECTORY` - Directory where base games (such as `DOOM2.WAD`) are located. Defaults to `./iwads`.
+* `PWAD_DIRECTORY` - Directory where mods (such as `AV.WAD`) are located. Defaults to `./pwads`.
 
 ## Usage
-To start zandronum run this command:
 `docker-compose up`
